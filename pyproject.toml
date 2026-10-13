@@ -1,0 +1,19 @@
+[project]
+name = "hw3-cds"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "cheskapanga", email = "148071219+cheskapanga@users.noreply.github.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "pandas>=3.0.6",
+]
+
+[project.scripts]
+hw3-cds = "hw3_cds:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
