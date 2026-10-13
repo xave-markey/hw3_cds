@@ -104,27 +104,75 @@ def read_csv(file_path: str):
 # q4_test_filepath_exists = read_csv(existing_filepath)
 # q4_test_filepath_doesnt_exist = read_csv(nonexistent_filepath)     
 
+
 # # 5) Squash some bugs! 
 # # Find the possible logical errors (bugs) 
 # # in the code blocks below. Comment in each of them
 # # which logical errors did you find and correct them
+
+# Since the instruction asks to correct the errors, I have added the corrected bit of code below my comments below.
+# I then printed the final result below the code so we have something to look at.
+
 # ### (a)
 # total_double_sum = 0
 # for elem in [10, 5, 2]:
 #     double = elem * 2
 #     total_double_sum += elem
 
+# Here we are not using the double variable which we defined in the center of the funciton. In the end, we are taking the sum
+# of the list [10, 5, 2] which would be 17. We should instead replace the elem in the right operand with double. You could also
+# simply take lst = [10, 5, 2], then 2*sum(lst) is our double sum.
+
+total_double_sum = 0
+for elem in [10, 5, 2]:
+    double = elem * 2
+    total_double_sum += double
+print(total_double_sum)
+
+
 # ### (b)
 # strings = ''
 # for string in ['I', 'am', 'Groot']:
 #     strings = string+"_"+string
+
+# Here we would set strings to "I_I", then overwriting this and then defining strings as "am_am", then once again overwriting
+# strings and setting it to "Groot_Groot". It is implied that the function is meant not to overwrite previous code as that would
+# be redundant. You might instead want to create the string "I_I_am_am_Groot_Groot" (just my guess), which you could do by adding
+# a "+" to the code, so we set strings += string + "_" + string + "_", then returning strings[:-1] to cut off the last str "_".
+
+strings = ''
+for string in ['I', 'am', 'Groot']:
+    strings = string + "_" + string + "_"
+# Again I reiterate we slice the last character "_" of the string:
+print(strings[:-1])
+
 
 # ### (c) Careful!
 # j=10
 # while j > 0:
 #    j += 1
 
+# This is a classical indexing error. Since j = 10 is already greater than 0 we will run through this while loop infinitely.
+# This is because j > 0 will always evaluate as true, and since it will only terminate when j <= 0. We should instead set the
+# loop update expression to j -= 1, allowing the loop to run 10 times.
+
+j = 10
+count = 0
+while j > 0:
+    count +=
+    j -= 1
+print(count)
+
+
 # ### (d)
 # productory = 0
 # for elem in [1, 5, 25]:
 #     productory *= elem
+
+# productory would stay 0, since anything multiplied by 0 is 0. We should instead define productory as 1 the multiplicative identity
+# over F (e.g. field F = N the field of natural numbers).
+
+productory = 1
+for elem in [1, 5, 25]:
+    productory *= elem
+print(productory)
