@@ -16,13 +16,13 @@ import os
 
 def car_at_light(light: str):
     if light == "red":
-        return print("stop")
+        return "stop"
     elif light == "green":
-        return print("go")
+        return "go"
     elif light == "yellow":
-        return print("wait")
+        return "wait"
     else:
-        raise ValueError(f"Undefined instruction for color: {light!r}")
+        raise ValueError(f"Undefined instruction for color: {light}")
 
 # Uncomment below to test Q1
 # q1_test_red = car_at_light("red")
@@ -45,9 +45,11 @@ def car_at_light(light: str):
 
 def safe_subtract(first, second):
     try:
-        return first-second
+        return first - second
     except TypeError:
         return None
+    except Exception as error:
+        print(f"An error occurred: {error}")
 
 # Uncomment below to test Q2
 # q2_test_int_sub_int = safe_subtract(1, 2)
@@ -70,13 +72,13 @@ def retrieve_age_eafp(person):
     try:
         return 2026 - person['birth']
     except KeyError:
-        return ("The age is missing")
+        return "The age is missing"
 
 def retrieve_age_lbyl(person):
     if "birth" in person:
         return 2026 - person['birth']
     else:
-                return ("The age is missing")
+        return "The age is missing"
 
 ## Uncomment below to test Q3
 # john  = {'name': 'John', 'last_name': 'Doe', 'birth': 1987}
@@ -90,13 +92,15 @@ def retrieve_age_lbyl(person):
 # and reads the file making sure to use to handle the fact
 # that it might not exist. 
 
-def read_csv(file_path: str):
-     if os.path.exists(file_path):
+def read_data(file_path: str):
+    try:
         df_data = pd.read_csv(file_path)
         print("data.csv was successfully read")
         print(df_data)
-     else:
+    except FileNotFoundError:
         print("Oh no! This file/filepath does not exist.")
+    except pd.errors.ParserError as error:
+        print(f"Could not parse CSV file: {error}")
 
 # Uncomment below to test Q4
 # existing_filepath = "data/test_spreadsheet.csv"
@@ -142,8 +146,9 @@ print(total_double_sum)
 
 strings = ''
 for string in ['I', 'am', 'Groot']:
-    strings = string + "_" + string + "_"
-# Again I reiterate we slice the last character "_" of the string:
+    strings += string + "_" + string + "_"
+# Again I reiterate we slice the last character "_" of the string, which
+# would print "I_I_am_am_Groot_Groot" (I believe is what the intended output)
 print(strings[:-1])
 
 
@@ -159,8 +164,9 @@ print(strings[:-1])
 j = 10
 count = 0
 while j > 0:
-    count +=
+    count += 1
     j -= 1
+# This would print 10
 print(count)
 
 
@@ -175,4 +181,5 @@ print(count)
 productory = 1
 for elem in [1, 5, 25]:
     productory *= elem
+# This would print the product of 1, 5, and 25, which is 125:
 print(productory)
